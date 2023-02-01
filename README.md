@@ -9,14 +9,15 @@ Apply a depth migration to a .png format seismic image
 
 
 
-## Design
-
-Convert velocity model to time domain > Load and dimensionalise image > Interpolate depth values at pixel values > Resample pixel values to regular grid > Export to Image
-
-
+## Function design
+```mermaid
+flowchart TD
+    id1[Load velocity model and convert to time domain] --> id2[Load and dimensionalise image pixels] --> id3[Interpolate depth values at pixels] -->
+    id4[Resample pixel values to regular grid] --> id5[Export to Image]
+```
 ## Dependencies
-- Standard python libraries Numpy and Scipy
-- Image loading and saving requires Pillow
+- Standard python libraries (Numpy and Scipy)
+- Image loading and saving requires Pillow: https://pillow.readthedocs.io/en/stable/
 
 ## Example: Depth migrate an image of seismic data using a velocity model
 ```
