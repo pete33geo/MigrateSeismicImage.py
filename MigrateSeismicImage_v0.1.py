@@ -8,6 +8,7 @@ Created on Tue Jan 31 2023
 https://github.com/pete33geo/MigrateSeismicImage.py
 """
 import numpy as np
+import sys
 from PIL import Image,ImageShow
 from scipy.interpolate import LinearNDInterpolator as interpolate_fn
 
@@ -51,6 +52,11 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
     # Load image as an array of shape (rows,columns,rgba), and dimensionalise
     #==========================================================================
     img = Image.open(png)
+    
+    if img.mode() != 'rgba':
+        "\nError: Image must be a 32bit png with rgba channels\n"
+        sys.exit()
+    
     img = np.asarray(img)
     
     #dimensionalise png data
