@@ -2,7 +2,7 @@
 Apply a 2D depth migration to a .png image of seismic data with known x and time dimensions.
 
 ## Data inputs
-- A .png image clipped to the data extent
+- A png (32bit) image clipped to the data extent
 - 2D velocity model, consisting x, depth, and velocity
 - Velocity model is a 3D array, consisting 2D arrays (meshgrids 'xy' indexing)
 - Note that inputs must be in consistent units
