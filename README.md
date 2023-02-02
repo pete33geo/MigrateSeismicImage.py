@@ -1,5 +1,5 @@
 # MigrateSeismicImage.py
-Apply a depth migration to a .png format seismic image
+Apply a 2D depth migration to a .png format seismic image
 
 ## Data
 - Crop an image with known extent in x and z dimensions, and save as a .png file
