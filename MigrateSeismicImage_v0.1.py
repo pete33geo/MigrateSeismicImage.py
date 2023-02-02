@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Jan 31 14:55:53 2023
+MigrateSeismicImage_v0.1.py
+
+Created on Tue Jan 31 2023
 
 @author: pete33geo
-
 https://github.com/pete33geo/MigrateSeismicImage.py
 """
 
@@ -13,9 +14,7 @@ from scipy.interpolate import LinearNDInterpolator as interpolate_fn
 
 def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=False):
     """Apply a depth migration to a .png image of seismic data with known
-       x and time dimensions
-    
-    Note: Units must be consistent across inputs.
+       x and time dimensions. Units must be consistent across inputs.
     
     Parameters
     ----------
@@ -25,7 +24,7 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
     png : str
         File name of .png type image
     dimensions : Tuple
-        Maximum x [m/km] and time [TWT, msec/sec] dimension
+        Maximum x [m or km] and time [TWT, msec or sec] dimension
     cutoff : int/float (optional)
         Depth to cut-off data output. Default 'False' is max depth in vel_model
     save : Bool (optional)
