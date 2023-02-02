@@ -1,25 +1,35 @@
 # MigrateSeismicImage.py
-Apply a 2D depth migration to a .png format seismic image
+Apply a 2D depth migration to a .png image of seismic data with known x and time dimensions.
 
-## Data
-- Crop an image with known extent in x and z dimensions, and save as a .png file
-- Input data must be in consistent units (e.g., m, m/sec, sec)
+## Data inputs:
+- A .png image clipped to the data extent
+- 2D velocity model, consisting x, depth, and velocity
+- Velocity model is a 3D array, consisting 2D arrays (meshgrids 'xy' indexing)
+- Note that inputs must be in consistent units
 
-## Seismic velocities
-
-
-
-## Function design
-```mermaid
-flowchart TD
-    id1[Load velocity model and convert to time domain] --> id2[Load and dimensionalise image pixels] --> id3[Interpolate depth values at pixels] -->
-    id4[Resample pixel values to regular grid] --> id5[Export to Image]
-```
 ## Dependencies
 - Standard python libraries (Numpy and Scipy)
-- Image loading and saving requires Pillow: https://pillow.readthedocs.io/en/stable/
-
+- Image loading and saving requires Pillow (https://pillow.readthedocs.io/en/stable/)
 ## Example: Depth migrate an image of seismic data using a velocity model
 ```
-code here
+import numpy as np
+
+#example velocity model structure 
+x = np.arange(0,1000,0.1)
+z = np.arange(0,10,0.1)
+
+x,z = np.meshgrid(x,z, indexing='xy')
+
+vel = z / 2 + 2 #some seismic velocity with same dimensions as x and z
+
+velocity_model = np.array([x,z,vel])
+
+print(velocity_model.shape)
+
+MigrateSeismicImage(vel_model=velocity_model,
+                    png='your_data.png',
+                    dimensions=(5,1000),
+                    cutoff=5,
+                    save=True,
+                    show=True)
 ```
