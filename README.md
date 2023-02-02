@@ -19,12 +19,9 @@ x = np.arange(0,1000,0.1)
 z = np.arange(0,10,0.1)
 
 x,z = np.meshgrid(x,z, indexing='xy')
-
-vel = z / 2 + 2 #some seismic velocity with same dimensions as x and z
+vel = z / 2 + 2 #seismic velocities with same dimensions as x and z
 
 velocity_model = np.array([x,z,vel])
-
-print(velocity_model.shape)
 
 MigrateSeismicImage(vel_model=velocity_model,
                     png='your_data.png',
