@@ -12,8 +12,9 @@ from PIL import Image,ImageShow
 from scipy.interpolate import LinearNDInterpolator as interpolate_fn
 
 def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=False):
-    """Apply a depth migration to a .png image of seismic data with known x and
-    time dimensions. Units must be consistent across inputs.
+    """Apply a 2D depth migration to a .png image of seismic data with known x
+    and time dimensions. Units must be consistent across inputs. The png should
+    be clipped to the data extent.
     
     Parameters
     ----------
