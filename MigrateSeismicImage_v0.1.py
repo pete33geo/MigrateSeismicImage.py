@@ -13,8 +13,8 @@ from scipy.interpolate import LinearNDInterpolator as interpolate_fn
 
 def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=False):
     """Apply a 2D depth migration to a .png image of seismic data with known x
-    and time dimensions. Units must be consistent across inputs. The png should
-    be clipped to the data extent.
+    and time dimensions. Units must be consistent across inputs. The  32bit png
+    should be clipped to the data extent.
     
     Parameters
     ----------
@@ -22,7 +22,7 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
         3D array containing meshgrids of x, depth, and velocity ('xy' indexing)
         Units must be consistent
     png : str
-        File name of .png type image
+        File name of 32bit png type image
     dimensions : Tuple
         Maximum x [m or km] and time [TWT, msec or sec] dimension
     cutoff : int/float (optional)
