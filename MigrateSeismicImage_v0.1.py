@@ -53,8 +53,8 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
     #==========================================================================
     img = Image.open(png)
     
-    if img.mode() != 'rgba':
-        "\nError: Image must be a 32bit png with rgba channels\n"
+    if img.mode != 'rgba':
+        print("\nError: Image must be a 32-bit png with rgba channels\n")
         sys.exit()
     
     img = np.asarray(img)
@@ -104,7 +104,6 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
    
     if show:
         ImageShow.show(img_png)
-        
     if save:
         file = png[:-4] + '_depth'
         img_png.save(file + '.png')
