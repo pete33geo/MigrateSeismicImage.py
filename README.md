@@ -31,6 +31,3 @@ MigrateSeismicImage(vel_model=velocity_model,
                     save=True,
                     show=True)
 ```
-## Future improvements
-- Support for multiple image types
-- In v0.1, the output image needs to be manually rescaled! Will add scaling fn.
