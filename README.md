@@ -3,10 +3,8 @@ Apply a 2D depth migration to a .png image of seismic data with known x and time
 
 ## Data inputs
 - A png (32bit with rgba channels) image clipped to the data extent
-- 2D velocity model as a 3D array, consisting x, depth, and velocity (2D meshgrids with 'xy' indexing)
+- 2D velocity model as a 3D array (x, depth, and velocity as 2D meshgrids with 'xy' indexing)
 - Note that inputs must be in consistent units
-
-**In v0.1 the output image has the same aspect ratio as the input image, and needs to be manually rescaled!**
 
 ## Dependencies
 - Standard python libraries (Numpy and Scipy)
