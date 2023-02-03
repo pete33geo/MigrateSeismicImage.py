@@ -72,7 +72,6 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
     
     # Interpolate z at each image pixel location
     #==========================================================================
-    
     #take the velocity model points, with associated z and t data
     migrate = interpolate_fn((x.flatten(),owt.flatten()),z.flatten(),fill_value=999)
     
@@ -86,10 +85,13 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
         zlim = cutoff
     else:
         zlim = z.max()
-     
-    pixel_y = np.arange(0,img.shape[0]) * (zlim / img.shape[0]) #depths to sample
     
-    img_out = np.zeros(img.shape)
+    xpixels = img.shape[1]
+    ypixels = int(xpixels / xmax * zlim)
+    
+    pixel_y = np.arange(0,ypixels) * (zlim / ypixels) #depths to sample
+        
+    img_out = np.zeros((ypixels,xpixels,4))
     
     for rgba in range(4):
         for i in range(img.shape[1]):
@@ -99,7 +101,7 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
     print("\nDepth migrated {fname}\n".format(fname=png) )
     
     # Write regular grid to png image
-    ###############################################################################
+    #==========================================================================
     img_png = Image.fromarray(img_out.astype(np.uint8))
    
     if show:
