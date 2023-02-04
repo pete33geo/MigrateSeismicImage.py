@@ -1,11 +1,5 @@
 # MigrateSeismicImage.py
-Applies a 2D depth migration to a png image of a seismic section with known length and time dimensions.
-
-## Data inputs
-- A 32bit png image (rgba channels) clipped to the data extent
-- 2D velocity model as a 3D array (x, depth, and velocity as 2D meshgrids with 'xy' indexing)
-- Note that inputs must be in consistent units
-
+Applies a 2D depth migration to a png image of a seismic section, with known length and time dimensions.
 ## Dependencies
 - Standard python libraries (Numpy and Scipy)
 - Image loading and saving requires [Pillow](https://pillow.readthedocs.io/en/stable/)
