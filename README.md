@@ -1,8 +1,8 @@
 # MigrateSeismicImage.py
-Apply a 2D depth migration to a .png image of seismic data with known x and time dimensions.
+Applies a 2D depth migration to a png image of a seismic section with known length and time dimensions.
 
 ## Data inputs
-- A png (32bit with rgba channels) image clipped to the data extent
+- A 32bit png image (rgba channels) clipped to the data extent
 - 2D velocity model as a 3D array (x, depth, and velocity as 2D meshgrids with 'xy' indexing)
 - Note that inputs must be in consistent units
 
