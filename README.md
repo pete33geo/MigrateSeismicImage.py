@@ -6,6 +6,7 @@ Applies a 2D depth migration to a png image of a seismic section, with known len
 ## Example: Depth migrate an image of seismic data using a velocity model
 ```
 import numpy as np
+import MigrateSeismicImage
 
 #example velocity model structure 
 x = np.arange(0,1000,0.1)
