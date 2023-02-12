@@ -13,8 +13,8 @@ from PIL import Image,ImageShow
 from scipy.interpolate import LinearNDInterpolator as interpolate_fn
 
 def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=False):
-    """Apply a 2D depth migration to a .png image of seismic data with known x
-    and time dimensions. Units must be consistent across inputs. The  32bit png
+    """Apply a 2D depth migration to a png image of seismic data with known x
+    and time dimensions. Units must be consistent across inputs. The 32bit png
     should be clipped to the data extent.
     
     Parameters
@@ -39,14 +39,13 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
     """    
     # Convert velocity model to time domain (OWT)
     #==========================================================================
-    #import velocity model and convert velocity model to 'ij' indexing
-    x = vel_model[0].T
+    x = vel_model[0].T #convert velocity model to 'ij' indexing
     z = vel_model[1].T
     v = vel_model[2].T
     
     z_interval = np.diff(z,axis=1)
     
-    owt = np.zeros(z.shape) # one way time
+    owt = np.zeros(z.shape)
     owt[:,1:] = np.cumsum(z_interval / v[:,1:], axis=1)
     
     # Load image as an array of shape (rows,columns,rgba), and dimensionalise
@@ -58,10 +57,8 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
         sys.exit()
     
     img = np.asarray(img)
-    
-    #dimensionalise png data
     xmax = dimensions[0]
-    tmax_owt = dimensions[1] / 2 ##convert TWT msecs to OWT!
+    tmax_owt = dimensions[1] / 2 ##convert to OWT
         
     #create meshgrid of xz coords corresponding to the pixels
     xaxis = np.arange(0,img.shape[1]) * (xmax / img.shape[1])
@@ -74,10 +71,9 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
     #==========================================================================
     #take the velocity model points, with associated z and t data
     migrate = interpolate_fn((x.flatten(),owt.flatten()),z.flatten(),fill_value=999)
-    
     #interpolate z values at image pixel locations
     depths = migrate(ximg.flatten(),timg.flatten())
-    depths = depths.reshape(ximg.shape) #in km
+    depths = depths.reshape(ximg.shape)
    
     # Resample results onto a regular grid for conversion to image
     #==========================================================================
@@ -88,9 +84,8 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
     
     xpixels = img.shape[1]
     ypixels = int(xpixels / xmax * zlim)
+    pixel_y = np.arange(0,ypixels) * (zlim / ypixels)
     
-    pixel_y = np.arange(0,ypixels) * (zlim / ypixels) #depths to sample
-        
     img_out = np.zeros((ypixels,xpixels,4))
     
     for rgba in range(4):
