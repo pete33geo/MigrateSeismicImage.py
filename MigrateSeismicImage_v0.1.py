@@ -24,13 +24,13 @@ def MigrateSeismicImage(vel_model,png,dimensions,cutoff=False,save=True,show=Fal
         Units must be consistent
     png : str
         File name of 32bit png type image
-    dimensions : Tuple
+    dimensions : tuple
         Maximum x [m or km] and time [TWT, msec or sec] dimension
     cutoff : int/float (optional)
         Depth to cut-off data output. Default 'False' is max depth in vel_model
-    save : Bool (optional)
+    save : bool (optional)
         Use Pillow to save a png of the results. Default is 'True'
-    show : Bool (optional)
+    show : bool (optional)
         Use Pillow to preview the result in a new window. Default is 'False'
 
     Returns
