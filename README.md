@@ -8,11 +8,11 @@ Applies a 2D depth migration to a png image of a seismic section, with known len
 import numpy as np
 import MigrateSeismicImage
 
-#example velocity model structure 
+#example of velocity model structure 
 x = np.arange(0,1000,0.1)
 z = np.arange(0,10,0.1)
-
 x,z = np.meshgrid(x,z, indexing='xy')
+
 vel = z / 2 + 2 #seismic velocities with same dimensions as x and z
 
 velocity_model = np.array([x,z,vel])
